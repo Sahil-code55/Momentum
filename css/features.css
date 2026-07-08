@@ -1,0 +1,560 @@
+/*
+ * FocusHub - Detailed Feature Page Styles
+ * 
+ * Styles the individual workspaces for the Todo, Planner, Pomodoro, Quotes, 
+ * and Goals features. These pages inherit clean layouts and align with matching theme variables.
+ */
+
+/* --- General Feature Section Shell --- */
+.feature-section {
+    background-color: var(--bg-card);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xl) var(--space-xxl);
+    box-shadow: var(--shadow-md);
+    flex-grow: 1;
+    display: none;
+    flex-direction: column;
+    animation: fadeIn var(--transition-normal);
+}
+
+.feature-section.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.feature-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: var(--border-width) solid var(--border-color);
+    padding-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background-color: var(--bg-app);
+    border: var(--border-width) solid var(--border-color);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.back-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-color-hover);
+    background-color: var(--input-bg);
+}
+
+.feature-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.feature-header-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.feature-title {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* --- 1. Todo List Page (`#todo-section`) --- */
+.todo-accent-icon {
+    background-color: var(--color-todo-bg);
+    color: var(--color-todo);
+}
+
+.feature-layout-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    max-width: 720px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.completed-text{
+    text-decoration: line-through;
+    opacity: .6;
+}
+
+.input-group {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.todo-input {
+    flex-grow: 1;
+}
+
+.todo-add-btn {
+    background-color: var(--color-todo);
+    color: #ffffff;
+    padding: var(--space-md) var(--space-lg);
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.todo-add-btn:hover {
+    background-color: var(--color-todo-hover);
+}
+
+/* Checklist Items */
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    min-height: 200px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md);
+    background-color: var(--bg-app);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.task-item:hover {
+    border-color: var(--border-color-hover);
+    background-color: var(--input-bg);
+}
+
+.task-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+/* Premium Custom Checkbox */
+.custom-checkbox-wrapper {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.custom-checkbox {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.checkbox-visual {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--text-muted);
+    border-radius: var(--radius-xs);
+    background-color: var(--bg-card);
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.custom-checkbox:checked + .checkbox-visual {
+    background-color: var(--color-todo);
+    border-color: var(--color-todo);
+}
+
+.checkbox-visual svg {
+    color: #ffffff;
+    opacity: 0;
+    transition: var(--transition-fast);
+}
+
+.custom-checkbox:checked + .checkbox-visual svg {
+    opacity: 1;
+}
+
+.task-text {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: var(--transition-fast);
+}
+
+.custom-checkbox:checked ~ .task-text {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.btn-delete-task {
+    color: var(--text-muted);
+    padding: var(--space-xs);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
+}
+
+.btn-delete-task:hover {
+    color: var(--color-pomodoro); /* Tomato/Red tint for delete */
+    background-color: rgba(249, 115, 22, 0.1);
+}
+
+/* Empty State Styles */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-xl) var(--space-md);
+    color: var(--text-tertiary);
+    flex-grow: 1;
+}
+
+.empty-state-icon {
+    font-size: 40px;
+    color: var(--text-muted);
+    margin-bottom: var(--space-md);
+}
+
+.empty-state h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+}
+
+.empty-state p {
+    font-size: 13px;
+    max-width: 240px;
+}
+
+/* --- 2. Daily Planner Page (`#planner-section`) --- */
+.planner-accent-icon {
+    background-color: var(--color-planner-bg);
+    color: var(--color-planner);
+}
+
+.planner-layout {
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.planner-container {
+    display: flex;
+    flex-direction: column;
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background-color: var(--bg-card);
+}
+
+.planner-slot {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    border-bottom: var(--border-width) solid var(--border-color);
+    min-height: 64px;
+    align-items: stretch;
+    transition: var(--transition-fast);
+}
+
+.planner-slot:last-child {
+    border-bottom: none;
+}
+
+.planner-time {
+    background-color: var(--bg-app);
+    padding: var(--space-md);
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: var(--border-width) solid var(--border-color);
+}
+
+.planner-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    flex-grow: 1;
+}
+
+.planner-textarea {
+    width: 100%;
+    height: 100%;
+    min-height: 60px;
+    padding: var(--space-md) var(--space-lg);
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    resize: none;
+    transition: background-color var(--transition-fast);
+}
+
+.planner-textarea:focus {
+    background-color: var(--color-planner-bg);
+    box-shadow: none;
+    border: none;
+}
+
+/* --- 3. Pomodoro Page (`#pomodoro-section`) --- */
+.pomodoro-accent-icon {
+    background-color: var(--color-pomodoro-bg);
+    color: var(--color-pomodoro);
+}
+
+.pomodoro-layout {
+    max-width: 480px;
+    margin: var(--space-xl) auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Dial Frame */
+.timer-dial-outer {
+    width: 280px;
+    height: 280px;
+    border-radius: var(--radius-full);
+    border: 8px solid var(--input-bg);
+    background-color: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    margin-bottom: var(--space-xl);
+    border-top-color: var(--color-pomodoro); /* Gives a progress arc impression */
+}
+
+.timer-display {
+    font-family: var(--font-heading);
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+.session-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    margin-top: var(--space-xs);
+}
+
+.timer-controls {
+    display: flex;
+    gap: var(--space-md);
+    width: 100%;
+}
+
+.btn-timer {
+    flex: 1;
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    transition: var(--transition-fast);
+    border: var(--border-width) solid transparent;
+}
+
+.btn-timer-start {
+    background-color: var(--color-pomodoro);
+    color: #ffffff;
+}
+
+.btn-timer-start:hover {
+    background-color: var(--color-pomodoro-hover);
+}
+
+.btn-timer-pause {
+    background-color: var(--input-bg);
+    border-color: var(--border-color);
+    color: var(--text-secondary);
+}
+
+.btn-timer-pause:hover {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.btn-timer-reset {
+    background-color: transparent;
+    border-color: var(--border-color);
+    color: var(--text-tertiary);
+}
+
+.btn-timer-reset:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+}
+
+/* --- 4. Motivation Quotes Page (`#quotes-section`) --- */
+.quotes-accent-icon {
+    background-color: var(--color-motivation-bg);
+    color: var(--color-motivation);
+}
+
+.quotes-layout {
+    max-width: 640px;
+    margin: var(--space-xl) auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.quote-canvas {
+    background-color: var(--color-motivation-bg);
+    border: var(--border-width) solid rgba(236, 72, 153, 0.15);
+    border-radius: var(--radius-xl);
+    padding: var(--space-xxl) var(--space-3xl);
+    margin-bottom: var(--space-xl);
+    width: 100%;
+    box-shadow: var(--shadow-sm);
+}
+
+.large-quote-icon {
+    font-size: 48px;
+    color: var(--color-motivation);
+    line-height: 1;
+    margin-bottom: var(--space-md);
+    opacity: 0.6;
+}
+
+.quote-canvas blockquote {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--text-primary);
+    margin-bottom: var(--space-md);
+}
+
+.quote-canvas cite {
+    font-style: normal;
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.btn-motivation-refresh {
+    background-color: var(--color-motivation);
+    color: #ffffff;
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    transition: var(--transition-fast);
+}
+
+.btn-motivation-refresh:hover {
+    background-color: var(--color-motivation-hover);
+}
+
+/* --- 5. Daily Goals Page (`#goals-section`) --- */
+.goals-accent-icon {
+    background-color: var(--color-goals-bg);
+    color: var(--color-goals);
+}
+
+.goals-layout {
+    max-width: 680px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.goals-add-btn {
+    background-color: var(--color-goals);
+    color: #ffffff;
+    padding: var(--space-md) var(--space-lg);
+    font-weight: 600;
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
+}
+
+.goals-add-btn:hover {
+    background-color: var(--color-goals-hover);
+}
+
+/* Goals Checkbox Modification */
+.goals-checkbox:checked + .checkbox-visual {
+    background-color: var(--color-goals);
+    border-color: var(--color-goals);
+}
+
+/* Goals Progress Card */
+.goals-progress-card {
+    background-color: var(--bg-app);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.progress-track {
+    height: 8px;
+    background-color: var(--border-color);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 40%; /* Demo starting percent matching dashboard stat */
+    background-color: var(--color-goals);
+    border-radius: var(--radius-full);
+    transition: width var(--transition-normal);
+}

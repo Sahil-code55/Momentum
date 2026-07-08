@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum- Single Page Productivity Dashboard</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/features.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- --- TOP NAVIGATION --- -->
+        <header class="navbar" id="dashboardHeader">
+            <div class="nav-brand">
+                <div class="logo-icon">
+                    <!-- Checkmark Circle Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h1>Momentum Tracker</h1>
+                    <span>Your Productivity Partner</span>
+                </div>
+            </div>
+            
+            <div class="nav-widgets">
+                <!-- Date Placeholder -->
+                <div class="nav-item" id="navDateContainer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                        <line x1="16" x2="16" y1="2" y2="6"/>
+                        <line x1="8" x2="8" y1="2" y2="6"/>
+                        <line x1="3" x2="21" y1="10" y2="10"/>
+                    </svg>
+                    <span id="navDate">Loading....</span>
+                </div>
+                
+                <!-- Time Placeholder -->
+                <div class="nav-item" id="navTimeContainer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span id="navTime">--:--:--</span>
+                </div>
+                
+                <!-- Weather Placeholder -->
+                <div class="nav-item" id="navWeatherContainer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4"/>
+                        <path d="M12 2v2"/>
+                        <path d="M12 20v2"/>
+                        <path d="m4.93 4.93 1.41 1.41"/>
+                        <path d="m17.66 17.66 1.41 1.41"/>
+                        <path d="M2 12h2"/>
+                        <path d="M20 12h2"/>
+                        <path d="m6.34 17.66-1.41 1.41"/>
+                        <path d="m19.07 4.93-1.41 1.41"/>
+                    </svg>
+                    <span id="navWeather">Loading weather...</span>
+                </div>
+                
+                <!-- Theme Toggle Slider -->
+                <div class="theme-switch-wrapper">
+                    <label class="theme-toggle-label" for="themeToggle">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider">
+                            <span class="slider-icons">
+                                <!-- Sun Icon (Light Mode) -->
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="4"/>
+                                    <path d="M12 2v2M12 20v2M4.93 4.93 1.41 1.41M17.66 17.66 1.41 1.41M2 12h2M20 12h2M6.34 17.66 4.93 19.07M19.07 4.93 17.66 6.34"/>
+                                </svg>
+                                <!-- Moon Icon (Dark Mode) -->
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                                </svg>
+                            </span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <!-- --- MAIN CONTAINER --- -->
+        <main>
+            
+            <!-- ========================================== -->
+            <!--   SECTION: HOME DASHBOARD CONTAINER        -->
+            <!-- ========================================== -->
+            <section id="dashboard-section" class=" feature-section active">
+                
+                <!-- GREETING & HEADER QUOTE ROW -->
+                <div class="dashboard-header-row">
+                    <div class="greeting-section">
+                        <h2 id="greeting">Good Evening</h2>
+                        <p>Let's make today productive.</p>
+                    </div>
+                    
+                    <!-- Integrated Motivation Quote Box -->
+                    <div class="header-quote-card" id="headerQuoteContainer">
+                        <div class="quote-left-wrapper">
+                            <span class="quote-decor-icon">“</span>
+                            <div class="quote-content">
+                                <p class="quote-text">Loading todays quote...</p>
+                                <p class="quote-author">Loading author name..</p>
+                            </div>
+                        </div>
+                        <button class="btn-new-quote" id="headerNewQuoteBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                            </svg>
+                            <span>New Quote</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 5-FEATURE GRID -->
+                <div class="feature-grid" id="featureGrid">
+                    
+                    <!-- CARD 1: Todo List -->
+                    <article class="feature-card todo-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <h3>Todo List</h3>
+                        <p>Add tasks, mark important, and track your progress.</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 20h9M3 20h.01M3 14h.01M3 8h.01M4 20h1M4 14h1M4 8h1M8 14h12M8 8h12"/>
+                                </svg>
+                                <span>12 Tasks</span>
+                            </div>
+                            <div class="stat-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"/>
+                                </svg>
+                                <span>5 Completed</span>
+                            </div>
+                        </div>
+                        <button class="card-action-btn" id="openTodoBtn">
+                            <span>Open Todo List</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </article>
+
+                    <!-- CARD 2: Daily Planner -->
+                    <article class="feature-card planner-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                                <line x1="16" x2="16" y1="2" y2="6"/>
+                                <line x1="8" x2="8" y1="2" y2="6"/>
+                                <line x1="3" x2="21" y1="10" y2="10"/>
+                            </svg>
+                        </div>
+                        <h3>Daily Planner</h3>
+                        <p>Plan your day by time and stay organized.</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/>
+                                </svg>
+                                <span>8 Events</span>
+                            </div>
+                            <div class="stat-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                <span>Next: 08:00 AM</span>
+                            </div>
+                        </div>
+                        <button class="card-action-btn" id="openPlannerBtn">
+                            <span>Open Planner</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </article>
+
+                    <!-- CARD 3: Pomodoro Timer -->
+                    <article class="feature-card pomodoro-card">
+                        <div class="card-icon">
+                            <!-- Tomato SVG / Apple representation -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7a7 7 0 0 1 7 7c0 3.87-3.13 7-7 7s-7-3.13-7-7a7 7 0 0 1 7-7v-1.27c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2Z"/>
+                            </svg>
+                        </div>
+                        <h3>Pomodoro Timer</h3>
+                        <p>Stay focused with the Pomodoro technique.</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                <span>25 Minutes</span>
+                            </div>
+                            <div class="stat-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                                    <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/>
+                                </svg>
+                                <span>Focus Session</span>
+                            </div>
+                        </div>
+                        <button class="card-action-btn" id="openPomodoroBtn">
+                            <span>Start Timer</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </article>
+
+                    <!-- CARD 4: Daily Goals -->
+                    <article class="feature-card goals-card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="6"/>
+                                <circle cx="12" cy="12" r="2"/>
+                            </svg>
+                        </div>
+                        <h3>Daily Goals</h3>
+                        <p>Set your goals and achieve every day.</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/>
+                                </svg>
+                                <span>2 / 5 Completed</span>
+                            </div>
+                            <div class="stat-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 20v-6M6 20V10M18 20V4"/>
+                                </svg>
+                                <span>40% Progress</span>
+                            </div>
+                        </div>
+                        <button class="card-action-btn" id="openGoalsBtn">
+                            <span>Open Goals</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </article>
+
+                    <!-- CARD 5: Motivation -->
+                    <article class="feature-card motivation-card">
+                        <div class="card-icon">
+                            <span style="font-family: var(--font-heading); font-weight: 800; font-size: 20px; line-height: 1;">“</span>
+                        </div>
+                        <h3>Motivation</h3>
+                        <p>Get inspired with daily quotes.</p>
+                        <div class="card-stats">
+                            <div class="stat-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                                </svg>
+                                <span>Daily Quotes</span>
+                            </div>
+                            <div class="stat-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z"/>
+                                    <path d="M12 8v4l3 3"/>
+                                </svg>
+                                <span>Stay Motivated</span>
+                            </div>
+                        </div>
+                        <button class="card-action-btn" id="openQuotesBtn">
+                            <span>New Quote</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </article>
+                </div>
+
+                <!-- WIDGETS ROW (WEATHER & DATETIME) -->
+                <div class="widgets-row">
+                    
+                    <!-- WEATHER WIDGET -->
+                    <div class="widget-card widget-weather" id="weatherWidget">
+                        <div class="widget-header">
+                            <div class="widget-icon-box">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="4"/>
+                                    <path d="M12 2v2M12 20v2M4.93 4.93 1.41 1.41M17.66 17.66 1.41 1.41M2 12h2M20 12h2M6.34 17.66 4.93 19.07M19.07 4.93 17.66 6.34"/>
+                                </svg>
+                            </div>
+                            <div class="widget-title-container">
+                                <h4>Weather Update</h4>
+                                <div class="widget-heading-main">
+                                    <span id="widgetTemp">0 </span>
+                                    <span class="temp-desc" id="widgetCondition">Loading data..</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="weather-details">
+                            <div class="weather-stat">
+                                <span class="weather-stat-label">Humidity</span>
+                                <span class="weather-stat-value" id="widgetHumidity">loading humidity..</span>
+                            </div>
+                            <div class="weather-stat">
+                                <span class="weather-stat-label">Wind</span>
+                                <span class="weather-stat-value" id="widgetWind">loading speed..</span>
+                            </div>
+                            <div class="weather-stat">
+                                <span class="weather-stat-label">Feels Like</span>
+                                <span class="weather-stat-value" id="widgetFeelsLike">Loading temperature..</span>
+                            </div>
+                        </div>
+                        
+                        <div class="weather-footer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span id="widgetLocation">Loading location..</span>
+                        </div>
+                    </div>
+
+                    <!-- DATE & TIME WIDGET -->
+                    <div class="widget-card widget-datetime">
+                        <div class="datetime-layout">
+                            <div class="date-column">
+                                <div class="widget-header">
+                                    <div class="widget-icon-box">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"/>
+                                            <polyline points="12 6 12 12 16 14"/>
+                                        </svg>
+                                    </div>
+                                    <div class="widget-title-container">
+                                        <h4>Date & Time</h4>
+                                    </div>
+                                </div>
+                                <span class="day-label" id="widgetDay">Sunday</span>
+                                <span class="full-date-label" id="widgetDate">5 May 2024</span>
+                            </div>
+                            <div class="time-column" id="widgetTime">
+                                07:45:30 PM
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            
+            </section>
+
+            
+            <!-- ========================================== -->
+            <!--   SECTION: TODO FEATURE SECTION            -->
+            <!-- ========================================== -->
+            <section id="todo-section" class="feature-section">
+                <header class="feature-header">
+                    <div class="feature-header-left">
+                        <div class="feature-header-icon todo-accent-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <h2 class="feature-title">Todo List</h2>
+                    </div>
+                    <button class="back-btn" id="todoBackBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                        <span>Back to Dashboard</span>
+                    </button>
+                </header>
+
+                <div class="feature-layout-split">
+                    <!-- Form Input Row -->
+                    <div class="input-group">
+                        <input type="text" id="todoInput" placeholder="Add a new task..." class="todo-input">
+                        <button class="todo-add-btn" id="addTodoBtn">Add Task</button>
+                    </div>
+
+                    <!-- Tasks List Container -->
+                    <ul class="list-container" id="todoList">
+                     
+                        <!-- Empty Task List Container State (Hidden when items are present, designed for future toggle) -->
+                        <div class="empty-state hidden">
+                            <div class="empty-state-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <h4>No tasks yet</h4>
+                            <p>Add a task above to get started tracking your checklist.</p>
+                        </div>
+                    </ul>
+                </div>
+            </section>
+
+                 <!-- ========================================== -->
+            <!--   SECTION: DAILY PLANNER FEATURE           -->
+            <!-- ========================================== -->
+            <section id="planner-section" class="feature-section ">
+                <header class="feature-header">
+                    <div class="feature-header-left">
+                        <div class="feature-header-icon planner-accent-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                                <line x1="16" x2="16" y1="2" y2="6"/>
+                                <line x1="8" x2="8" y1="2" y2="6"/>
+                                <line x1="3" x2="21" y1="10" y2="10"/>
+                            </svg>
+                        </div>
+                        <h2 class="feature-title">Daily Planner</h2>
+                    </div>
+                    <button class="back-btn" id="plannerBackBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                        <span>Back to Dashboard</span>
+                    </button>
+                </header>
+
+                <div class="planner-layout">
+                    <div class="planner-container" id="plannerContainer">
+                        
+                        <!-- 08:00 AM Slot -->
+                        <div class="planner-slot" id="slot-0800">
+                            <div class="planner-time">08:00 AM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 08:00 AM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 09:00 AM Slot -->
+                        <div class="planner-slot" id="slot-0900">
+                            <div class="planner-time">09:00 AM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 09:00 AM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 10:00 AM Slot -->
+                        <div class="planner-slot" id="slot-1000">
+                            <div class="planner-time">10:00 AM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 10:00 AM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 11:00 AM Slot -->
+                        <div class="planner-slot" id="slot-1100">
+                            <div class="planner-time">11:00 AM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 11:00 AM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 12:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1200">
+                            <div class="planner-time">12:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 12:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 01:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1300">
+                            <div class="planner-time">01:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 01:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 02:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1400">
+                            <div class="planner-time">02:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 02:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 03:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1500">
+                            <div class="planner-time">03:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 03:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 04:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1600">
+                            <div class="planner-time">04:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 04:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 05:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1700">
+                            <div class="planner-time">05:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 05:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 06:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1800">
+                            <div class="planner-time">06:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 06:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 07:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1900">
+                            <div class="planner-time">07:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 07:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 08:00 PM Slot -->
+                        <div class="planner-slot" id="slot-2000">
+                            <div class="planner-time">08:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 08:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 09:00 PM Slot -->
+                        <div class="planner-slot" id="slot-2100">
+                            <div class="planner-time">09:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 09:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 10:00 PM Slot -->
+                        <div class="planner-slot" id="slot-2200">
+                            <div class="planner-time">10:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 10:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+             <!-- ========================================== -->
+            <!--   SECTION: POMODORO TIMER FEATURE          -->
+            <!-- ========================================== -->
+            <section id="pomodoro-section" class="feature-section ">
+                <header class="feature-header">
+                    <div class="feature-header-left">
+                        <div class="feature-header-icon pomodoro-accent-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                                <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/>
+                            </svg>
+                        </div>
+                        <h2 class="feature-title">Pomodoro Timer</h2>
+                    </div>
+                    <button class="back-btn" id="pomodoroBackBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                        <span>Back to Dashboard</span>
+                    </button>
+                </header>
+
+                <div class="pomodoro-layout">
+                    <!-- Giant Dial Container -->
+                    <div class="timer-dial-outer">
+                        <div class="timer-display" id="timerDisplay">25:00</div>
+                        <div class="session-label" id="sessionLabel">Work Session</div>
+                    </div>
+
+                    <!-- Timer Action Buttons -->
+                    <div class="timer-controls">
+                        <button class="btn-timer btn-timer-start" id="timerStartBtn">Start</button>
+                        <button class="btn-timer btn-timer-pause" id="timerPauseBtn">Pause</button>
+                        <button class="btn-timer btn-timer-reset" id="timerResetBtn">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+              <!-- ========================================== -->
+            <!--   SECTION: MOTIVATION QUOTES FEATURE       -->
+            <!-- ========================================== -->
+            <section id="quotes-section" class="feature-section ">
+                <header class="feature-header">
+                    <div class="feature-header-left">
+                        <div class="feature-header-icon quotes-accent-icon">
+                            <span style="font-family: var(--font-heading); font-weight: 800; font-size: 18px; line-height: 1;">“</span>
+                        </div>
+                        <h2 class="feature-title">Daily Motivation</h2>
+                    </div>
+                    <button class="back-btn" id="quotesBackBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                        <span>Back to Dashboard</span>
+                    </button>
+                </header>
+
+                <div class="quotes-layout">
+                    <!-- Quote Container -->
+                    <div class="quote-canvas" id="quoteContainer">
+                        <div class="large-quote-icon">“</div>
+                        <blockquote id="quoteDisplay">
+                            The secret of getting ahead is getting started.
+                        </blockquote>
+                        <cite id="quoteAuthor">— Mark Twain</cite>
+                    </div>
+
+                    <!-- Fetch New Quote Button -->
+                    <button class="btn-motivation-refresh" id="newQuoteBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                        </svg>
+                        <span>New Quote</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!--   SECTION: DAILY GOALS FEATURE             -->
+            <!-- ========================================== -->
+            <section id="goals-section" class="feature-section">
+                <header class="feature-header">
+                    <div class="feature-header-left">
+                        <div class="feature-header-icon goals-accent-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="6"/>
+                                <circle cx="12" cy="12" r="2"/>
+                            </svg>
+                        </div>
+                        <h2 class="feature-title">Daily Goals</h2>
+                    </div>
+                    <button class="back-btn" id="goalsBackBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                        <span>Back to Dashboard</span>
+                    </button>
+                </header>
+
+                <div class="goals-layout">
+                    <!-- Progress Card -->
+                    <div class="goals-progress-card">
+                        <div class="progress-header">
+                            <span>Your Daily Progress</span>
+                            <span id="goalProgress">2 of 5 goals completed (40%)</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="goalProgressBar"></div>
+                        </div>
+                    </div>
+
+                    <!-- Input Section -->
+                    <div class="input-group">
+                        <input type="text" id="goalInput" placeholder="Set a new goal..." class="todo-input">
+                        <button class="goals-add-btn" id="addGoalBtn">Add Goal</button>
+                    </div>
+
+                    <!-- Goals checklist container -->
+                    <ul class="list-container" id="goalList">
+                        <!-- Goal 1 -->
+                        <li class="task-item">
+                            <div class="task-left">
+                                <div class="custom-checkbox-wrapper">
+                                    <input type="checkbox" class="custom-checkbox goals-checkbox" checked>
+                                    <span class="checkbox-visual">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 6 9 17l-5-5"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <span class="task-text">Drink 3 Liters of Water</span>
+                            </div>
+                            <button class="btn-delete-task">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </li>
+
+                        <!-- Goal 2 -->
+                        <li class="task-item">
+                            <div class="task-left">
+                                <div class="custom-checkbox-wrapper">
+                                    <input type="checkbox" class="custom-checkbox goals-checkbox" checked>
+                                    <span class="checkbox-visual">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 6 9 17l-5-5"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <span class="task-text">Complete 2 Focus Sessions</span>
+                            </div>
+                            <button class="btn-delete-task">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </li>
+
+                        <!-- Goal 3 -->
+                        <li class="task-item">
+                            <div class="task-left">
+                                <div class="custom-checkbox-wrapper">
+                                    <input type="checkbox" class="custom-checkbox goals-checkbox">
+                                    <span class="checkbox-visual">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 6 9 17l-5-5"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <span class="task-text">Read 10 Pages of Book</span>
+                            </div>
+                            <button class="btn-delete-task">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </li>
+
+                        <!-- Goal 4 -->
+                        <li class="task-item">
+                            <div class="task-left">
+                                <div class="custom-checkbox-wrapper">
+                                    <input type="checkbox" class="custom-checkbox goals-checkbox">
+                                    <span class="checkbox-visual">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 6 9 17l-5-5"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <span class="task-text">Stretch for 15 minutes</span>
+                            </div>
+                            <button class="btn-delete-task">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </li>
+
+                        <!-- Goal 5 -->
+                        <li class="task-item">
+                            <div class="task-left">
+                                <div class="custom-checkbox-wrapper">
+                                    <input type="checkbox" class="custom-checkbox goals-checkbox">
+                                    <span class="checkbox-visual">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M20 6 9 17l-5-5"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <span class="task-text">Write in Gratitude Journal</span>
+                            </div>
+                            <button class="btn-delete-task">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+
+
+<!-- print sections here -->
+
+        </main>
+    </div>
+
+    <!-- --- JAVASCRIPT CONTROLLERS --- -->
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/datetime.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/quotes.js"></script>
+    <script src="js/todo.js"></script>
+    <script src="js/planner.js"></script>
+    <script src="js/goals.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

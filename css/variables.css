@@ -1,0 +1,132 @@
+/*
+ * FocusHub - CSS Variables & Theme Design Tokens
+ * 
+ * Implements a premium, neutral-focused color scheme with dedicated theme colors
+ * for each feature card, an 8px layout grid spacing system, and fluid dark-mode transitions.
+ */
+
+:root {
+    /* Fonts */
+    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    
+    /* Spacing Grid (8px base) */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-xxl: 40px;
+    --space-3xl: 48px;
+    --space-4xl: 64px;
+    
+    /* Border Radius */
+    --radius-xs: 4px;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    /* Shadow Scale */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.06), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    
+    /* Border Width */
+    --border-width: 1px;
+    
+    /* Transitions */
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* --- LIGHT THEME (Default) --- */
+    --bg-app: #f8fafc;           /* Slate 50 */
+    --bg-card: #ffffff;
+    --bg-widget-weather: #fffcf0; /* Soft warm yellow tint */
+    --bg-widget-datetime: #f0f6ff; /* Soft cool blue tint */
+    
+    --border-color: #e2e8f0;      /* Slate 200 */
+    --border-color-hover: #cbd5e1;/* Slate 300 */
+    
+    --text-primary: #0f172a;      /* Slate 900 */
+    --text-secondary: #475569;    /* Slate 600 */
+    --text-tertiary: #64748b;     /* Slate 500 */
+    --text-muted: #94a3b8;        /* Slate 400 */
+    
+    --input-bg: #f1f5f9;          /* Slate 100 */
+    --input-border: #e2e8f0;
+    --input-focus: #3b82f6;
+
+    /* Feature Accent Colors: Todo (Purple/Indigo) */
+    --color-todo: #6366f1;
+    --color-todo-bg: #f5f3ff;
+    --color-todo-hover: #4f46e5;
+    
+    /* Feature Accent Colors: Planner (Green) */
+    --color-planner: #10b981;
+    --color-planner-bg: #ecfdf5;
+    --color-planner-hover: #059669;
+
+    /* Feature Accent Colors: Pomodoro (Orange/Tomato) */
+    --color-pomodoro: #f97316;
+    --color-pomodoro-bg: #fff7ed;
+    --color-pomodoro-hover: #ea580c;
+
+    /* Feature Accent Colors: Goals (Blue) */
+    --color-goals: #3b82f6;
+    --color-goals-bg: #eff6ff;
+    --color-goals-hover: #2563eb;
+
+    /* Feature Accent Colors: Motivation (Pink) */
+    --color-motivation: #ec4899;
+    --color-motivation-bg: #fdf2f8;
+    --color-motivation-hover: #db2777;
+}
+
+/* --- DARK THEME OVERRIDES --- */
+.dark-theme {
+    --bg-app: #090d16;            /* Premium dark navy/slate */
+    --bg-card: #121826;           /* Slightly lighter dark background */
+    --bg-widget-weather: #1c1a12; /* Muted dark gold tint */
+    --bg-widget-datetime: #121926; /* Muted dark blue tint */
+    
+    --border-color: #212c42;
+    --border-color-hover: #334363;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --input-bg: #1a2333;
+    --input-border: #212c42;
+    --input-focus: #60a5fa;
+
+    /* Feature Accent Colors: Todo (Purple) */
+    --color-todo: #818cf8;
+    --color-todo-bg: #1c1936;
+    --color-todo-hover: #6366f1;
+    
+    /* Feature Accent Colors: Planner (Green) */
+    --color-planner: #34d399;
+    --color-planner-bg: #122b22;
+    --color-planner-hover: #10b981;
+
+    /* Feature Accent Colors: Pomodoro (Orange) */
+    --color-pomodoro: #fb923c;
+    --color-pomodoro-bg: #2d1e15;
+    --color-pomodoro-hover: #f97316;
+
+    /* Feature Accent Colors: Goals (Blue) */
+    --color-goals: #60a5fa;
+    --color-goals-bg: #14243b;
+    --color-goals-hover: #3b82f6;
+
+    /* Feature Accent Colors: Motivation (Pink) */
+    --color-motivation: #f472b6;
+    --color-motivation-bg: #301726;
+    --color-motivation-hover: #ec4899;
+}

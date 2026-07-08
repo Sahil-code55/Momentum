@@ -1,0 +1,552 @@
+
+            <!-- ========================================== -->
+            <!--   SECTION: TODO FEATURE SECTION            -->
+            <!-- ========================================== -->
+            <section id="todo-section" class="feature-section hidden">
+                <header class="feature-header">
+                    <div class="feature-header-left">
+                        <div class="feature-header-icon todo-accent-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <path d="m9 12 2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <h2 class="feature-title">Todo List</h2>
+                    </div>
+                    <button class="back-btn" id="todoBackBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                        <span>Back to Dashboard</span>
+                    </button>
+                </header>
+
+                <div class="feature-layout-split">
+                    <!-- Form Input Row -->
+                    <div class="input-group">
+                        <input type="text" id="todoInput" placeholder="Add a new task..." class="todo-input">
+                        <button class="todo-add-btn" id="addTodoBtn">Add Task</button>
+                    </div>
+
+                    <!-- Tasks List Container -->
+                    <ul class="list-container" id="todoList">
+                        <!-- Example Task 1 (Uncompleted) -->
+                        <li class="task-item">
+                            <div class="task-left">
+                                <div class="custom-checkbox-wrapper">
+                                    <input type="checkbox" class="custom-checkbox">
+                                    <span class="checkbox-visual">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17l-5-5"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <span class="task-text">Review and polish design mockup</span>
+                            </div>
+                            <button class="btn-delete-task">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </li>
+
+                        <!-- Example Task 2 (Completed) -->
+                        <li class="task-item">
+                            <div class="task-left">
+                                <div class="custom-checkbox-wrapper">
+                                    <input type="checkbox" class="custom-checkbox" checked>
+                                    <span class="checkbox-visual">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17l-5-5"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <span class="task-text">Define color variable palette tokens</span>
+                            </div>
+                            <button class="btn-delete-task">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </li>
+
+                        <!-- Empty Task List Container State (Hidden when items are present, designed for future toggle) -->
+                        <div class="empty-state hidden">
+                            <div class="empty-state-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <h4>No tasks yet</h4>
+                            <p>Add a task above to get started tracking your checklist.</p>
+                        </div>
+                    </ul>
+                </div>
+            </section>
+
+         
+            <!-- ========================================== -->
+            <!--   SECTION: DAILY PLANNER FEATURE           -->
+            <!-- ========================================== -->
+            <section id="planner-section" class="feature-section hidden">
+                <header class="feature-header">
+                    <div class="feature-header-left">
+                        <div class="feature-header-icon planner-accent-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                                <line x1="16" x2="16" y1="2" y2="6"/>
+                                <line x1="8" x2="8" y1="2" y2="6"/>
+                                <line x1="3" x2="21" y1="10" y2="10"/>
+                            </svg>
+                        </div>
+                        <h2 class="feature-title">Daily Planner</h2>
+                    </div>
+                    <button class="back-btn" id="plannerBackBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                        <span>Back to Dashboard</span>
+                    </button>
+                </header>
+
+                <div class="planner-layout">
+                    <div class="planner-container" id="plannerContainer">
+                        
+                        <!-- 08:00 AM Slot -->
+                        <div class="planner-slot" id="slot-0800">
+                            <div class="planner-time">08:00 AM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 08:00 AM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 09:00 AM Slot -->
+                        <div class="planner-slot" id="slot-0900">
+                            <div class="planner-time">09:00 AM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 09:00 AM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 10:00 AM Slot -->
+                        <div class="planner-slot" id="slot-1000">
+                            <div class="planner-time">10:00 AM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 10:00 AM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 11:00 AM Slot -->
+                        <div class="planner-slot" id="slot-1100">
+                            <div class="planner-time">11:00 AM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 11:00 AM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 12:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1200">
+                            <div class="planner-time">12:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 12:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 01:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1300">
+                            <div class="planner-time">01:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 01:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 02:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1400">
+                            <div class="planner-time">02:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 02:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 03:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1500">
+                            <div class="planner-time">03:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 03:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 04:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1600">
+                            <div class="planner-time">04:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 04:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 05:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1700">
+                            <div class="planner-time">05:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 05:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 06:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1800">
+                            <div class="planner-time">06:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 06:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 07:00 PM Slot -->
+                        <div class="planner-slot" id="slot-1900">
+                            <div class="planner-time">07:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 07:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 08:00 PM Slot -->
+                        <div class="planner-slot" id="slot-2000">
+                            <div class="planner-time">08:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 08:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 09:00 PM Slot -->
+                        <div class="planner-slot" id="slot-2100">
+                            <div class="planner-time">09:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 09:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 10:00 PM Slot -->
+                        <div class="planner-slot" id="slot-2200">
+                            <div class="planner-time">10:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 10:00 PM..."></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ========================================== -->
+            <!--   SECTION: POMODORO TIMER FEATURE          -->
+            <!-- ========================================== -->
+            <section id="pomodoro-section" class="feature-section hidden">
+                <header class="feature-header">
+                    <div class="feature-header-left">
+                        <div class="feature-header-icon pomodoro-accent-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                                <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"/>
+                            </svg>
+                        </div>
+                        <h2 class="feature-title">Pomodoro Timer</h2>
+                    </div>
+                    <button class="back-btn" id="pomodoroBackBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                        <span>Back to Dashboard</span>
+                    </button>
+                </header>
+
+                <div class="pomodoro-layout">
+                    <!-- Giant Dial Container -->
+                    <div class="timer-dial-outer">
+                        <div class="timer-display" id="timerDisplay">25:00</div>
+                        <div class="session-label" id="sessionLabel">Work Session</div>
+                    </div>
+
+                    <!-- Timer Action Buttons -->
+                    <div class="timer-controls">
+                        <button class="btn-timer btn-timer-start" id="timerStartBtn">Start</button>
+                        <button class="btn-timer btn-timer-pause" id="timerPauseBtn">Pause</button>
+                        <button class="btn-timer btn-timer-reset" id="timerResetBtn">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- ========================================== -->
+            <!--   SECTION: MOTIVATION QUOTES FEATURE       -->
+            <!-- ========================================== -->
+            <section id="quotes-section" class="feature-section hidden">
+                <header class="feature-header">
+                    <div class="feature-header-left">
+                        <div class="feature-header-icon quotes-accent-icon">
+                            <span style="font-family: var(--font-heading); font-weight: 800; font-size: 18px; line-height: 1;">“</span>
+                        </div>
+                        <h2 class="feature-title">Daily Motivation</h2>
+                    </div>
+                    <button class="back-btn" id="quotesBackBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                        <span>Back to Dashboard</span>
+                    </button>
+                </header>
+
+                <div class="quotes-layout">
+                    <!-- Quote Container -->
+                    <div class="quote-canvas" id="quoteContainer">
+                        <div class="large-quote-icon">“</div>
+                        <blockquote id="quoteDisplay">
+                            The secret of getting ahead is getting started.
+                        </blockquote>
+                        <cite id="quoteAuthor">— Mark Twain</cite>
+                    </div>
+
+                    <!-- Fetch New Quote Button -->
+                    <button class="btn-motivation-refresh" id="newQuoteBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                        </svg>
+                        <span>New Quote</span>
+                    </button>
+                </div>
+            </section>
+
+
+            <!-- ========================================== -->
+            <!--   SECTION: DAILY GOALS FEATURE             -->
+            <!-- ========================================== -->
+            <section id="goals-section" class="feature-section hidden">
+                <header class="feature-header">
+                    <div class="feature-header-left">
+                        <div class="feature-header-icon goals-accent-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="6"/>
+                                <circle cx="12" cy="12" r="2"/>
+                            </svg>
+                        </div>
+                        <h2 class="feature-title">Daily Goals</h2>
+                    </div>
+                    <button class="back-btn" id="goalsBackBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6"/>
+                        </svg>
+                        <span>Back to Dashboard</span>
+                    </button>
+                </header>
+
+                <div class="goals-layout">
+                    <!-- Progress Card -->
+                    <div class="goals-progress-card">
+                        <div class="progress-header">
+                            <span>Your Daily Progress</span>
+                            <span id="goalProgress">2 of 5 goals completed (40%)</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill" id="goalProgressBar"></div>
+                        </div>
+                    </div>
+
+                    <!-- Input Section -->
+                    <div class="input-group">
+                        <input type="text" id="goalInput" placeholder="Set a new goal..." class="todo-input">
+                        <button class="goals-add-btn" id="addGoalBtn">Add Goal</button>
+                    </div>
+
+                    <!-- Goals checklist container -->
+                    <ul class="list-container" id="goalList">
+                        <!-- Goal 1 -->
+                        <li class="task-item">
+                            <div class="task-left">
+                                <div class="custom-checkbox-wrapper">
+                                    <input type="checkbox" class="custom-checkbox goals-checkbox" checked>
+                                    <span class="checkbox-visual">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17l-5-5"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <span class="task-text">Drink 3 Liters of Water</span>
+                            </div>
+                            <button class="btn-delete-task">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </li>
+
+                        <!-- Goal 2 -->
+                        <li class="task-item">
+                            <div class="task-left">
+                                <div class="custom-checkbox-wrapper">
+                                    <input type="checkbox" class="custom-checkbox goals-checkbox" checked>
+                                    <span class="checkbox-visual">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17l-5-5"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <span class="task-text">Complete 2 Focus Sessions</span>
+                            </div>
+                            <button class="btn-delete-task">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </li>
+
+                        <!-- Goal 3 -->
+                        <li class="task-item">
+                            <div class="task-left">
+                                <div class="custom-checkbox-wrapper">
+                                    <input type="checkbox" class="custom-checkbox goals-checkbox">
+                                    <span class="checkbox-visual">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17l-5-5"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <span class="task-text">Read 10 Pages of Book</span>
+                            </div>
+                            <button class="btn-delete-task">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </li>
+
+                        <!-- Goal 4 -->
+                        <li class="task-item">
+                            <div class="task-left">
+                                <div class="custom-checkbox-wrapper">
+                                    <input type="checkbox" class="custom-checkbox goals-checkbox">
+                                    <span class="checkbox-visual">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17l-5-5"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <span class="task-text">Stretch for 15 minutes</span>
+                            </div>
+                            <button class="btn-delete-task">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </li>
+
+                        <!-- Goal 5 -->
+                        <li class="task-item">
+                            <div class="task-left">
+                                <div class="custom-checkbox-wrapper">
+                                    <input type="checkbox" class="custom-checkbox goals-checkbox">
+                                    <span class="checkbox-visual">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17l-5-5"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <span class="task-text">Write in Gratitude Journal</span>
+                            </div>
+                            <button class="btn-delete-task">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+
+
+
+
+
+
+
+
+
+
+            const navWeather = document.getElementById("navWeather");
+const weatherWidget = document.getElementById("weatherWidget");
+const widgetTemp = document.getElementById("widgetTemp");
+const widgetCondition = document.getElementById("widgetCondition");
+const widgetHumidity = document.getElementById("widgetHumidity");
+const widgetWind = document.getElementById("widgetWind");
+const widgetFeelsLike = document.getElementById("widgetFeelsLike");
+const widgetLocation = document.getElementById("widgetLocation");
+
+
+
+
+// Helper function to map Open-Meteo WMO Codes to human-readable text strings
+function getWeatherDescription(code) {
+    if (code === 0) return "Sunny";
+    if ([1, 2, 3].includes(code)) return "Partly Cloudy";
+    if ([45, 48].includes(code)) return "Foggy";
+    if ([51, 53, 55, 61, 63, 65, 80, 81, 82].includes(code)) return "Rainy";
+    if ([71, 73, 75, 77, 85, 86].includes(code)) return "Snowy";
+    if ([95, 96, 99].includes(code)) return "Thunderstorm";
+    return "Cloudy";
+}
+navigator.geolocation.getCurrentPosition(
+    async (position) => {
+
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        // Fetch temperature
+       const weatherResponse = await fetch(
+  `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,weather_code`
+);
+
+        const weatherData = await weatherResponse.json();
+        
+        
+    const current = weatherData.current
+    const temperature = current.temperature_2m;
+    const humidity = current.relative_humidity_2m;
+    const wind = current.wind_speed_10m;
+    const feelsLike = current.apparent_temperature;
+    const weatherCode = current.weather_code;
+    const description = getWeatherDescription(weatherCode);
+
+        // Fetch city name
+        const locationResponse = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&accept-language=en`
+        );
+
+        const locationData = await locationResponse.json();
+
+        const city =
+            locationData.address.city ||
+            locationData.address.town ||
+            locationData.address.village ||
+            locationData.address.country ||
+            locationData.address.state;
+          
+         
+        const country  = locationData.address.country    
+
+        navWeather.textContent = `${temperature}°C, ${city}`;
+        widgetTemp.textContent = `${temperature}°C`;
+        widgetCondition.textContent =description;
+        widgetHumidity.textContent = `${humidity}`;
+        widgetWind.textContent = `${wind} km/h`;
+        widgetFeelsLike.textContent = `${feelsLike}°C`;
+        widgetLocation.textContent = `${city}, ${country}`;
+
+
+    },
+    (error) => {
+        navWeather.textContent = "Location unavailable";
+        widgetTemp.textContent = "Location unavailable";
+        console.error(error);
+    }
+);

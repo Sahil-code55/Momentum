@@ -1,0 +1,351 @@
+================================================================================
+MOMENTUM TRACKER - JAVASCRIPT CONNECTIVITY & TODO FEATURE GUIDE
+================================================================================
+
+This document explains:
+1. How the HTML, CSS, and various JavaScript files connect in the project.
+2. How to toggle the visibility of hidden panels (like the Todo list screen).
+3. Why your previous click-handler code didn't work.
+4. How to implement the Todo list logic and save tasks to storage.
+
+--------------------------------------------------------------------------------
+1. PROJECT STRUCTURE & FILE CONNECTIVITY
+--------------------------------------------------------------------------------
+
+The application is structured as a single-page application (SPA). Everything is 
+contained in 'index.html', and sections are shown/hidden dynamically.
+
+A. HTML Structure (index.html)
+- Main Dashboard: The grid with the feature cards is inside:
+  <section id="dashboard-section"> ... </section>
+  
+- Todo List Screen: The hidden screen for the Todo feature is inside:
+  <section id="todo-section" class="feature-section hidden"> ... </section>
+
+- Other Screens (Planner, Pomodoro, Goals, Quotes): 
+  Their HTML code is located in 'extra.txt'. To enable those screens, copy 
+  their sections from 'extra.txt' and paste them inside 'index.html' under the 
+  comment: <!-- print sections here -->
+
+B. Script Loading Order in index.html
+Near the bottom of 'index.html', scripts are loaded in a specific order:
+  1.  storage.js      - Defines storageModule (helper to save/load from localStorage)
+  2.  theme.js        - Defines themeModule (dark/light theme toggle)
+  3.  background.js   - Defines backgroundModule (custom backgrounds)
+  4.  datetime.js     - Instantly runs time/date logic and greets the user
+  5.  weather.js      - Instantly requests location and fetches weather data
+  6.  quotes.js       - Defines quoteModule placeholder
+  7.  todo.js         - Defines todoModule placeholder (your todo logic)
+  8.  planner.js      - Defines plannerModule placeholder
+  9.  goals.js        - Defines goalsModule placeholder
+  10. timer.js        - Defines timerModule placeholder
+  11. navigation.js   - Defines navigationModule placeholder (screen switcher)
+  12. app.js          - Main controller that orchestrates the app launch
+
+C. How Scripts Communicate
+Because these files are loaded as standard global scripts in the browser:
+- Any variable/object declared in the global scope of one file (e.g. 'const todoModule = ...' in 'todo.js') is accessible by subsequent scripts.
+- 'app.js' is loaded last. Its job is to wait for the DOM to load, and then initialize all modules by calling their '.init()' methods.
+
+To make them work, make sure 'app.js' has the init calls uncommented:
+-------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+    themeModule.init();
+    navigationModule.init();
+    todoModule.init();
+    plannerModule.init();
+    goalsModule.init();
+    timerModule.init();
+});
+-------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+2. HOW NAVIGATION (SCREEN TOGGLING) WORKS
+--------------------------------------------------------------------------------
+
+A. The CSS '.hidden' Class
+In 'css/style.css' (line 100), you will find:
+  .hidden {
+      display: none !important;
+  }
+This class forces any element to be invisible, overriding other styles because of '!important'.
+
+B. The Show/Hide Concept
+- To show the Todo screen:
+  1. Add the "hidden" class to the main dashboard container: '#dashboard-section'.
+  2. Remove the "hidden" class from the todo container: '#todo-section'.
+- To return to the dashboard:
+  1. Add the "hidden" class to the todo container: '#todo-section'.
+  2. Remove the "hidden" class from the main dashboard container: '#dashboard-section'.
+
+C. Why your previous click-handler code failed:
+In your 'todo.js', you wrote:
+  openTodoBtn.addEventListener("click", function(){
+      document.querySelector(".hidden").style = "flex"
+  })
+This had four bugs:
+  1. "Document" was capitalized, causing a JavaScript ReferenceError.
+  2. document.querySelector(".hidden") selects the FIRST element on the page that has the class "hidden". This is usually a sub-element inside some card or empty-state, not the '#todo-section' itself.
+  3. Setting '.style = "flex"' does not remove the '.hidden' class. Since '.hidden' has 'display: none !important', the '!important' rule in CSS overrides your inline style, keeping the screen invisible.
+  4. It didn't hide the '#dashboard-section'.
+
+D. The Correct Navigation Implementation
+You should write the visibility logic in 'js/navigation.js'. Here is a clean pattern:
+
+--------------------------------------------------------------------------------
+// File: js/navigation.js
+--------------------------------------------------------------------------------
+const navigationModule = {
+    init() {
+        console.log('Navigation module initialized.');
+
+        // 1. Listen for clicks on dashboard cards to open feature screens
+        document.getElementById("openTodoBtn").addEventListener("click", () => {
+            this.showScreen("todo-section");
+        });
+        document.getElementById("openPlannerBtn").addEventListener("click", () => {
+            this.showScreen("planner-section");
+        });
+        document.getElementById("openPomodoroBtn").addEventListener("click", () => {
+            this.showScreen("pomodoro-section");
+        });
+        document.getElementById("openQuotesBtn").addEventListener("click", () => {
+            this.showScreen("quotes-section");
+        });
+        document.getElementById("openGoalsBtn").addEventListener("click", () => {
+            this.showScreen("goals-section");
+        });
+
+        // 2. Listen for clicks on the Back buttons to return to the Dashboard
+        document.getElementById("todoBackBtn").addEventListener("click", () => {
+            this.showScreen("dashboard-section");
+        });
+        // (Add back buttons for other screens when you copy them from extra.txt)
+    },
+
+    showScreen(screenId) {
+        // A list of all major screen IDs
+        const screens = [
+            "dashboard-section",
+            "todo-section",
+            "planner-section",
+            "pomodoro-section",
+            "quotes-section",
+            "goals-section"
+        ];
+
+        // Loop through all screens: remove "hidden" from the target, and add it to others
+        screens.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                if (id === screenId) {
+                    element.classList.remove("hidden");
+                } else {
+                    element.classList.add("hidden");
+                }
+            }
+        });
+    }
+};
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+3. HOW TO IMPLEMENT THE TODO FEATURE
+--------------------------------------------------------------------------------
+
+To make the Todo feature fully functional in 'js/todo.js', you need:
+1. State management (an array in memory to hold tasks: [{ id, text, completed }]).
+2. A render function to generate the list items (`<li>`) dynamically.
+3. Event listeners to add, delete, and toggle tasks.
+4. Persistence to save and load tasks using `storageModule`.
+
+Here is an example walkthrough of the code structure for 'js/todo.js':
+
+--------------------------------------------------------------------------------
+// File: js/todo.js
+--------------------------------------------------------------------------------
+const todoModule = {
+    // Array to hold our todo items
+    tasks: [],
+
+    init() {
+        console.log('Todo module initialized.');
+
+        // Load tasks from storage or start with defaults
+        const savedTasks = storageModule.load("todos");
+        if (savedTasks) {
+            this.tasks = savedTasks;
+        } else {
+            // Optional: Start with empty array or default tasks
+            this.tasks = [];
+        }
+
+        // Bind DOM elements
+        this.input = document.getElementById("todoInput");
+        this.addButton = document.getElementById("addTodoBtn");
+        this.listContainer = document.getElementById("todoList");
+
+        // Event: Click on Add button
+        this.addButton.addEventListener("click", () => this.handleAddTask());
+
+        // Event: Press "Enter" key inside input field
+        this.input.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") {
+                this.handleAddTask();
+            }
+        });
+
+        // Event Delegation for completion toggles and delete buttons:
+        // Instead of adding listeners to every single task, we listen on the parent container.
+        this.listContainer.addEventListener("click", (e) => {
+            const target = e.target;
+
+            // Check if checkbox was clicked
+            if (target.classList.contains("custom-checkbox")) {
+                const taskId = target.closest(".task-item").dataset.id;
+                this.toggleTask(taskId);
+            }
+
+            // Check if delete button was clicked (or icon inside it)
+            const deleteBtn = target.closest(".btn-delete-task");
+            if (deleteBtn) {
+                const taskId = deleteBtn.closest(".task-item").dataset.id;
+                this.deleteTask(taskId);
+            }
+        });
+
+        // First render of saved tasks
+        this.render();
+    },
+
+    handleAddTask() {
+        const text = this.input.value.trim();
+        if (text !== "") {
+            this.addTask(text);
+            this.input.value = ""; // Clear input field
+        }
+    },
+
+    addTask(text) {
+        const newTask = {
+            id: Date.now().toString(), // Unique ID using timestamp
+            text: text,
+            completed: false
+        };
+
+        this.tasks.push(newTask);
+        this.saveTasks();
+        this.render();
+    },
+
+    deleteTask(id) {
+        // Filter out the task with matching ID
+        this.tasks = this.tasks.filter(task => task.id !== id);
+        this.saveTasks();
+        this.render();
+    },
+
+    toggleTask(id) {
+        // Toggle the completed status of matching task
+        const task = this.tasks.find(task => task.id === id);
+        if (task) {
+            task.completed = !task.completed;
+            this.saveTasks();
+            this.render();
+        }
+    },
+
+    saveTasks() {
+        // Use storageModule (defined in storage.js) to save tasks array
+        if (typeof storageModule !== "undefined") {
+            storageModule.save("todos", this.tasks);
+        }
+    },
+
+    render() {
+        // 1. Clear existing HTML items
+        this.listContainer.innerHTML = "";
+
+        // 2. If list is empty, show empty state
+        const emptyState = this.listContainer.querySelector(".empty-state") || 
+                           document.querySelector("#todo-section .empty-state");
+
+        if (this.tasks.length === 0) {
+            if (emptyState) emptyState.classList.remove("hidden");
+        } else {
+            if (emptyState) emptyState.classList.add("hidden");
+
+            // 3. Loop through tasks and build HTML
+            this.tasks.forEach(task => {
+                const li = document.createElement("li");
+                li.className = "task-item";
+                li.dataset.id = task.id; // Store ID on the element
+
+                li.innerHTML = `
+                    <div class="task-left">
+                        <div class="custom-checkbox-wrapper">
+                            <input type="checkbox" class="custom-checkbox" ${task.completed ? "checked" : ""}>
+                            <span class="checkbox-visual">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17l-5-5"/>
+                                </svg>
+                            </span>
+                        </div>
+                        <span class="task-text ${task.completed ? "completed-text" : ""}">${task.text}</span>
+                    </div>
+                    <button class="btn-delete-task">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                        </svg>
+                    </button>
+                `;
+
+                this.listContainer.appendChild(li);
+            });
+        }
+
+        // 4. Update the dashboard counters
+        this.updateDashboardCounters();
+    },
+
+    updateDashboardCounters() {
+        // Count tasks
+        const totalTasks = this.tasks.length;
+        const completedTasks = this.tasks.filter(task => task.completed).length;
+
+        // Find counter selectors on the dashboard card (see todo-card inside index.html)
+        // Select elements: e.g. class "todo-card" container's stats text.
+        const statsElements = document.querySelectorAll(".todo-card .stat-item span");
+        if (statsElements.length >= 2) {
+            statsElements[0].textContent = `${totalTasks} Tasks`;
+            statsElements[1].textContent = `${completedTasks} Completed`;
+        }
+    }
+};
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+4. HOW STORAGE.JS SAVES YOUR DATA
+--------------------------------------------------------------------------------
+
+Your `storage.js` file is currently set up as a placeholder. To make local storage
+work, implement the `save` and `load` methods inside `js/storage.js`:
+
+--------------------------------------------------------------------------------
+// File: js/storage.js
+--------------------------------------------------------------------------------
+const storageModule = {
+    save(key, data) {
+        localStorage.setItem(key, JSON.stringify(data));
+    },
+    
+    load(key) {
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : null;
+    }
+};
+--------------------------------------------------------------------------------
+
+This will save your tasks, planner events, goals, and themes in the user's 
+browser so that they persist even when the page is refreshed.
+================================================================================
