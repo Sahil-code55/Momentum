@@ -9,8 +9,8 @@ const openTodoBtn = document.querySelector("#openTodoBtn")
 const todoSection = document.getElementById("todo-section")
 const dashboardSection = document.getElementById("dashboard-section")
 const todoBackBtn = document.getElementById("todoBackBtn")
-const todoInput = document.getElementById("todoInput");
-const addTodoBtn = document.getElementById("addTodoBtn");
+const numberTask = document.querySelector("#numberTask")
+
 
 const todoModule = {
     // Selectors:
@@ -26,12 +26,33 @@ const todoModule = {
         this.addTodoBtn = document.getElementById("addTodoBtn");
         this.todoList = document.getElementById("todoList");
         this.emptyState = document.querySelector("#todo-section .empty-state");
+        this.todoCount = document.getElementById("todoCount");
+        this.todoCompletedCount = document.getElementById("todoCompletedCount");
+
+        // setup local storage
+        const savedTasks = storageModule.load("todos");
+         if (savedTasks) {
+        this.tasks = savedTasks;
+         }
+         this.render();
+
+    // update card dashboard count
+    updateDashboardCounters(){
+this.todoCount.textContent = `${this.tasks.length} Tasks`;
+const completedTasks = this.tasks.filter(task => task.completed).length;
+this.todoCompletedCount.textContent = `${completedTasks} Completed`;
+}
 
         //  add task
+     this.addTodoBtn.addEventListener("click", () => {
+    this.handleAddTask();
+});
+   this.todoInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        this.handleAddTask();
+    }
 
-        this.addTodoBtn.addEventListener("click",()=>{
-            this.handleAddTask();
-        })
+});
 
         //delete
         this.todoList.addEventListener("click", (e) => {
@@ -40,12 +61,9 @@ const todoModule = {
   const taskId = checkbox.closest(".task-item").dataset.id;
   this.toggleTask(taskId)
 }
-
-
-
+    //delete setup
         const deleteBtn = e.target.closest(".btn-delete-task");
-      
-        if (deleteBtn) {
+        if(deleteBtn) {
     const taskId = deleteBtn.closest(".task-item").dataset.id;
     this.deleteTask(taskId);
 }
@@ -84,6 +102,8 @@ const todoModule = {
        }
 
         this.tasks.push(newTask);
+        this.saveTasks();
+       
         this.render()
         
     },
@@ -91,6 +111,7 @@ const todoModule = {
     deleteTask(id) {
         // Remove task and re-render
          this.tasks = this.tasks.filter((task) => task.id !== id);
+         this.saveTasks();
         this.render();
     },
     
@@ -99,13 +120,25 @@ const todoModule = {
       const task = this.tasks.find(task => task.id === id);
          if (task) {
         task.completed = !task.completed;
+        this.saveTasks();
 
         this.render();
     }
     },
-    render(){
-        this.todoList.innerHTML = "";
 
+    // save task function localStorage
+ saveTasks() {
+    storageModule.save("todos", this.tasks);
+},
+
+    render(){
+    this.todoList.innerHTML = "";
+    if (this.tasks.length === 0) {
+    this.emptyState.classList.remove("hidden");
+     } 
+    else {
+    this.emptyState.classList.add("hidden");
+}
         this.tasks.forEach((task)=>{
 
         const li = document.createElement("li");

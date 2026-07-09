@@ -7,13 +7,13 @@
 
 const storageModule = {
     save(key, data) {
-        // localStorage.setItem(key, JSON.stringify(data));
-        localStorage.setItem(data ,JSON.stringify(data))
+        
+        localStorage.setItem(key ,JSON.stringify(data))
     },
     
     load(key) {
-        // const data = localStorage.getItem(key);
-        // return data ? JSON.parse(data) : null;
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : null;
         return null;
     }
 };
