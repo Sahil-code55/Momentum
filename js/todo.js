@@ -36,12 +36,7 @@ const todoModule = {
          }
          this.render();
 
-    // update card dashboard count
-    updateDashboardCounters(){
-this.todoCount.textContent = `${this.tasks.length} Tasks`;
-const completedTasks = this.tasks.filter(task => task.completed).length;
-this.todoCompletedCount.textContent = `${completedTasks} Completed`;
-}
+   
 
         //  add task
      this.addTodoBtn.addEventListener("click", () => {
@@ -51,7 +46,6 @@ this.todoCompletedCount.textContent = `${completedTasks} Completed`;
     if (e.key === "Enter") {
         this.handleAddTask();
     }
-
 });
 
         //delete
@@ -84,6 +78,13 @@ this.todoCompletedCount.textContent = `${completedTasks} Completed`;
 
  
     },
+    //update the todoCard dashboard
+        updateDashboardCounters(){
+this.todoCount.textContent = `${this.tasks.length} Tasks`;
+const completedTasks = this.tasks.filter(task => task.completed).length;
+this.todoCompletedCount.textContent = `${completedTasks} Completed`;
+}
+,
 
         handleAddTask() {
         // Create task object and append to list
@@ -169,7 +170,7 @@ this.todoCompletedCount.textContent = `${completedTasks} Completed`;
             
 
         })
-        ;
+          this.updateDashboardCounters();
             }
 };
 
