@@ -1,5 +1,5 @@
 
-            const navWeather = document.getElementById("navWeather");
+ const navWeather = document.getElementById("navWeather");
 const weatherWidget = document.getElementById("weatherWidget");
 const widgetTemp = document.getElementById("widgetTemp");
 const widgetCondition = document.getElementById("widgetCondition");

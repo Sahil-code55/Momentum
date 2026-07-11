@@ -1,19 +1,11 @@
-/**
- * FocusHub - Pomodoro Timer Module
- * 
- * Implements Pomodoro timer state controls (Start, Pause, Reset).
- * Manages interval loops and displays timer states (Work, Break, Long Break).
- */
+
 const openPomodoroBtn = document.getElementById("openPomodoroBtn");
 const pomodoroSection = document.getElementById("pomodoro-section");
 const pomodoroBackBtn = document.getElementById("pomodoroBackBtn");
 
 
 const timerModule = {
-    // Selectors:
-    // Timer Display: #timerDisplay
-    // Status Label: #sessionLabel
-    // Buttons: #timerStartBtn, #timerPauseBtn, #timerResetBtn
+   
     
     init() {
         console.log('Pomodoro timer module placeholder loaded.');

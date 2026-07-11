@@ -14,6 +14,6 @@ const storageModule = {
     load(key) {
         const data = localStorage.getItem(key);
         return data ? JSON.parse(data) : null;
-        return null;
+       
     }
 };

@@ -169,20 +169,33 @@
                         </div>
                         <h3>Daily Planner</h3>
                         <p>Plan your day by time and stay organized.</p>
-                        <div class="card-stats">
+                         <div class="card-stats">
+
                             <div class="stat-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/>
-                                </svg>
-                                <span>8 Events</span>
-                            </div>
-                            <div class="stat-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
                                     <circle cx="12" cy="12" r="10"/>
                                     <polyline points="12 6 12 12 16 14"/>
                                 </svg>
-                                <span>Next: 08:00 AM</span>
+                        
+                                <span id="currentPlan">
+                                    Current: No Task
+                                </span>
                             </div>
+                        
+                            <div class="stat-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                        
+                                <span id="nextPlan">
+                                    Next: No Plans
+                                </span>
+                            </div>
+                        
                         </div>
                         <button class="card-action-btn" id="openPlannerBtn">
                             <span>Open Planner</span>
@@ -439,6 +452,13 @@
                 <div class="planner-layout">
                     <div class="planner-container" id="plannerContainer">
                         
+                        <!-- 07:00 AM Slot -->
+                        <div class="planner-slot" id="slot-0800">
+                            <div class="planner-time">07:00 AM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 08:00 AM..."></textarea>
+                            </div>
+                        </div>
                         <!-- 08:00 AM Slot -->
                         <div class="planner-slot" id="slot-0800">
                             <div class="planner-time">08:00 AM</div>
@@ -554,6 +574,20 @@
                         <!-- 10:00 PM Slot -->
                         <div class="planner-slot" id="slot-2200">
                             <div class="planner-time">10:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 10:00 PM..."></textarea>
+                            </div>
+                        </div>
+                        <!-- 11:00 PM Slot -->
+                        <div class="planner-slot" id="slot-2300">
+                            <div class="planner-time">11:00 PM</div>
+                            <div class="planner-input-wrapper">
+                                <textarea class="planner-textarea" placeholder="Add plan for 10:00 PM..."></textarea>
+                            </div>
+                        </div>
+                        <!-- 12:00 PM Slot -->
+                        <div class="planner-slot" id="slot-2400">
+                            <div class="planner-time">12:00 PM</div>
                             <div class="planner-input-wrapper">
                                 <textarea class="planner-textarea" placeholder="Add plan for 10:00 PM..."></textarea>
                             </div>

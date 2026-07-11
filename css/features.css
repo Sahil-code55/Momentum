@@ -48,14 +48,18 @@
     padding: var(--space-sm) var(--space-md);
     border-radius: var(--radius-md);
     transition: var(--transition-fast);
+      transform: scale(1.07);
 }
 
 .back-btn:hover {
     color: var(--text-primary);
     border-color: var(--border-color-hover);
     background-color: var(--input-bg);
+    transform: scale(1.07);
 }
-
+.back-btn:active {
+   transform: translateY(-1px);
+}
 .feature-header-left {
     display: flex;
     align-items: center;
@@ -115,10 +119,14 @@
     font-weight: 600;
     border-radius: var(--radius-md);
     transition: var(--transition-fast);
+    transform:  scale(1.07);
 }
 
 .todo-add-btn:hover {
     background-color: var(--color-todo-hover);
+}
+.todo-add-btn:active {
+    transform: translateY(-1px);
 }
 
 /* Checklist Items */
@@ -214,11 +222,15 @@
     padding: var(--space-xs);
     border-radius: var(--radius-sm);
     transition: var(--transition-fast);
+    transform: scale(1.07);
 }
 
 .btn-delete-task:hover {
     color: var(--color-pomodoro); /* Tomato/Red tint for delete */
     background-color: rgba(249, 115, 22, 0.1);
+}
+.btn-delete-task:active {
+   transform: translateY(-1px);
 }
 
 /* Empty State Styles */
@@ -340,6 +352,11 @@
     flex-direction: column;
     align-items: center;
 }
+/* planner Dashboard feature */
+.current-hour{
+    border: 2px solid var(--primary-color);
+    background: rgba(99,102,241,.08);
+}
 
 /* Dial Frame */
 .timer-dial-outer {
@@ -391,37 +408,53 @@
     text-align: center;
     transition: var(--transition-fast);
     border: var(--border-width) solid transparent;
+    transform: scale(1.07);
 }
 
 .btn-timer-start {
     background-color: var(--color-pomodoro);
     color: #ffffff;
+    transform: scale(1.07);
 }
 
 .btn-timer-start:hover {
     background-color: var(--color-pomodoro-hover);
 }
 
+.btn-timer-start:active {
+    background-color: var(--color-pomodoro-hover);
+     transform: translateY(-1px);
+}
+
 .btn-timer-pause {
     background-color: var(--input-bg);
     border-color: var(--border-color);
     color: var(--text-secondary);
+
 }
 
 .btn-timer-pause:hover {
     background-color: var(--border-color);
     color: var(--text-primary);
+    transform: scale(1.07);
+}
+.btn-timer-pause:active {
+ transform: translateY(-1px);
 }
 
 .btn-timer-reset {
     background-color: transparent;
     border-color: var(--border-color);
     color: var(--text-tertiary);
+    transform: scale(1.07);
 }
 
 .btn-timer-reset:hover {
     border-color: var(--text-muted);
     color: var(--text-primary);
+}
+.btn-timer-reset:active {
+ transform: translateY(-1px);
 }
 
 /* --- 4. Motivation Quotes Page (`#quotes-section`) --- */
@@ -485,10 +518,14 @@
     align-items: center;
     gap: var(--space-sm);
     transition: var(--transition-fast);
+    transform: scale(1.07);
 }
 
 .btn-motivation-refresh:hover {
     background-color: var(--color-motivation-hover);
+}
+.btn-motivation-refresh:active {
+    transform: translateY(-1px);
 }
 
 /* --- 5. Daily Goals Page (`#goals-section`) --- */
@@ -513,10 +550,14 @@
     font-weight: 600;
     border-radius: var(--radius-md);
     transition: var(--transition-fast);
+    transform: scale(1.07);
 }
 
 .goals-add-btn:hover {
     background-color: var(--color-goals-hover);
+}
+.goals-add-btn:active{
+   transform: translateY(-1px);
 }
 
 /* Goals Checkbox Modification */

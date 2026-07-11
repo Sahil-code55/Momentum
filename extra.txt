@@ -465,7 +465,25 @@
 
 
 
+       this.textareas = document.querySelectorAll(".planner-textarea");
+     
+    const savedPlanner = storageModule.load("planner");
 
+    if(savedPlanner){
+     this.plannerData = savedPlanner;
+    }
+
+    this.textareas.forEach((textarea) => {
+    textarea.addEventListener("input",(e)=>{
+    const slot =  textarea  .closest('.planner-slot');
+    
+    const time = slot.  id.replace("slot-", "");
+    console.log(textarea.value);
+    
+    const text = e.target.value;
+    this.plannerData[time] = text;
+    this.savePlanner();
+  
 
 
 
