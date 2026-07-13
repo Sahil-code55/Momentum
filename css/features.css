@@ -233,7 +233,7 @@
    transform: translateY(-1px);
 }
 
-/* Empty State Styles */
+/* todo Empty State Styles */
 .empty-state {
     display: flex;
     flex-direction: column;
@@ -259,6 +259,37 @@
 }
 
 .empty-state p {
+    font-size: 13px;
+    max-width: 240px;
+}
+
+
+/* goal  Empty State Styles */
+.goal-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-xl) var(--space-md);
+    color: var(--text-tertiary);
+    flex-grow: 1;
+}
+
+.goal-empty-state-icon {
+    font-size: 40px;
+    color: var(--text-muted);
+    margin-bottom: var(--space-md);
+}
+
+.goal-empty-state h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+}
+
+.goal-empty-state p {
     font-size: 13px;
     max-width: 240px;
 }

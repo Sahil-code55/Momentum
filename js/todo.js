@@ -66,7 +66,6 @@ const todoModule = {
 
         //  navigation
         console.log('Todo module placeholder loaded.');
-        // Set up event listeners for add task, delete task, toggle check
         openTodoBtn.addEventListener("click",function(){
             todoSection.classList.add("active");
             dashboardSection.classList.remove("active");   
@@ -95,7 +94,6 @@ this.todoCompletedCount.textContent = `${completedTasks} Completed`;
     },
     
     addTask(text) {
-        // Create task object and append to list
         const newTask ={
         id :Date.now().toString(),
         text:text,
