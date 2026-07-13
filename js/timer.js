@@ -10,6 +10,27 @@ const timerModule = {
     init() {
         console.log('Pomodoro timer module placeholder loaded.');
         // Set up click handlers for buttons
+       
+        //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
          openPomodoroBtn.addEventListener("click",function(){
             pomodoroSection.classList.add("active");
             dashboardSection.classList.remove("active");
