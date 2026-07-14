@@ -1,23 +1,48 @@
-/**
- * FocusHub - Theme Switcher Module
- * 
- * Toggles the '.dark-theme' class on the document body.
- * Synchronizes with user toggles and persistent storage.
- */
 
 const themeModule = {
-    // Selectors:
-    // Toggle element: #themeToggle (slider/switch)
+
     
     init() {
-        console.log('Theme switcher module placeholder loaded.');
-        // Read stored theme preference (default to light or system preferences)
-        
-        // Bind change events to theme toggler element
+    console.log('Theme switcher module placeholder loaded.');
+  
+      this.themeToggle = document.getElementById("themeToggle");
+        this.loadTheme();
+      this.themeToggle.addEventListener("change", () => {
+      this.toggleTheme();
+    
+    });
     },
     
     toggleTheme() {
-        // Toggle body.dark-theme class
-        // Save choice
+        if (this.themeToggle.checked) {
+        document.body.classList.add("dark-theme");
+        
+    } else {
+        document.body.classList.remove("dark-theme");
+
+    }
+      this.saveTheme();
+    },
+
+    saveTheme(){
+   if (this.themeToggle.checked) {
+        storageModule.save("theme", "dark");
+    } else {
+        storageModule.save("theme", "light");
+    }
+    },
+
+    loadTheme(){
+ const savedTheme = storageModule.load("theme");
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-theme");
+        this.themeToggle.checked = true;
+    }
+    else {
+
+        document.body.classList.remove("dark-theme");
+        this.themeToggle.checked = false;
+
+    }
     }
 };

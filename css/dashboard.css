@@ -1,11 +1,4 @@
-/*
- * FocusHub - Dashboard Grid & Layout Styles
- * 
- * Defines the main dashboard sections including navigation, greeting headers,
- * the 5-feature cards grid, weather and time widgets, and interactive hover states.
- */
 
-/* --- Top Navigation --- */
 .navbar {
     background-color: var(--bg-card);
     border-bottom: var(--border-width) solid var(--border-color);
@@ -120,11 +113,34 @@
     pointer-events: none;
 }
 
-.slider-icons svg {
+ .slider-icons svg {
     width: 14px;
     height: 14px;
     color: var(--text-muted);
+     transition: all 0.3s ease;
 }
+
+
+
+
+
+.slider-icons svg:first-child{
+    color:#fbbf24;
+    background:rgba(251,191,36,.15);
+    box-shadow:0 0 10px rgba(251,191,36,.45);
+}
+
+#themeToggle:checked + .slider .slider-icons svg:first-child{
+    background:transparent;
+    box-shadow:none;
+}
+
+#themeToggle:checked + .slider .slider-icons svg:last-child{
+    color:#fff;
+    background:rgba(255,255,255,.08);
+    box-shadow:0 0 10px rgba(255,255,255,.35);
+}
+
 
 .slider::before {
     position: absolute;
@@ -468,7 +484,7 @@ input:checked + .slider::before {
 /* Weather Card specifics */
 .widget-weather {
     background-color: var(--bg-widget-weather);
-    border-color: rgba(217, 119, 6, 0.15); /* warm tint border */
+    border-color: rgba(59, 130, 246, 0.15); /* warm tint border */
 }
 
 .widget-header {
@@ -515,8 +531,8 @@ input:checked + .slider::before {
 .weather-details {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border-top: var(--border-width) dashed rgba(217, 119, 6, 0.2);
-    border-bottom: var(--border-width) dashed rgba(217, 119, 6, 0.2);
+    border-top: var(--border-width) dashed rgba(59, 130, 246, 0.15);
+    border-bottom: var(--border-width) dashed rgba(59, 130, 246, 0.15);
     padding: var(--space-md) 0;
     margin: var(--space-md) 0;
 }

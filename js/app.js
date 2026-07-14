@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     timerModule.init();
     goalsModule.init();
     quoteModule.init();
+    themeModule.init();
     // TODO: Initialize all sub-modules here
     // themeModule.init();
     // navigationModule.init();

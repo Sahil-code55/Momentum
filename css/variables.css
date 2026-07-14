@@ -1,9 +1,3 @@
-/*
- * FocusHub - CSS Variables & Theme Design Tokens
- * 
- * Implements a premium, neutral-focused color scheme with dedicated theme colors
- * for each feature card, an 8px layout grid spacing system, and fluid dark-mode transitions.
- */
 
 :root {
     /* Fonts */
@@ -90,7 +84,7 @@
 .dark-theme {
     --bg-app: #090d16;            /* Premium dark navy/slate */
     --bg-card: #121826;           /* Slightly lighter dark background */
-    --bg-widget-weather: #1c1a12; /* Muted dark gold tint */
+    --bg-widget-weather:#121926; /* Muted dark gold tint */
     --bg-widget-datetime: #121926; /* Muted dark blue tint */
     
     --border-color: #212c42;

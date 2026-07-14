@@ -1,11 +1,4 @@
-/*
- * FocusHub - Responsive Stylesheet
- * 
- * Configures layout grid overrides and spacing reductions for tablet and
- * mobile screens. Supports adaptive text size scaling.
- */
 
-/* --- TABLET BREAKPOINT (Max-width: 1024px) --- */
 @media (max-width: 1024px) {
     .app-container {
         padding: var(--space-md);

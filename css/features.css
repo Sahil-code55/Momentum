@@ -1,11 +1,4 @@
-/*
- * FocusHub - Detailed Feature Page Styles
- * 
- * Styles the individual workspaces for the Todo, Planner, Pomodoro, Quotes, 
- * and Goals features. These pages inherit clean layouts and align with matching theme variables.
- */
 
-/* --- General Feature Section Shell --- */
 .feature-section {
     background-color: var(--bg-card);
     border: var(--border-width) solid var(--border-color);
