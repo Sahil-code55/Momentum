@@ -1,30 +1,22 @@
-/**
- * FocusHub - Daily Goals Module
- * 
- * Manages daily goal additions, deletion, status checking, and rendering.
- * Updates goal list and progress bars on both the dashboard card and the goals screen.
- */
 const openGoalsBtn = document.getElementById("openGoalsBtn");
 const goalsSection = document.getElementById("goals-section");
 const goalsBackBtn = document.getElementById("goalsBackBtn");
 
 
 const goalsModule = {
-    // Selectors:
-    // Input: #goalInput
-    // Add Button: #addGoalBtn
-    // List: #goalList
-    // Progress UI: #goalProgress on dashboard, #goalsProgressText
+
         goals: [],
     
     init() {
-        console.log('Goals module placeholder loaded.');
-        this.goalProgress = document.getElementById("goalProgress");
-        this.goalProgressBar = document.getElementById("goalProgressBar");
-        this.goalInput = document.getElementById("goalInput");
-        this.addGoalBtn = document.getElementById("addGoalBtn");
-        this.goalList = document.getElementById("goalList");
-         this.goalEmptyState = document.querySelector("#goals-section .goal-empty-state")
+    console.log('Goals module placeholder loaded.');
+    this.goalProgress = document.getElementById("goalProgress");
+    this.goalProgressBar = document.getElementById("goalProgressBar");
+    this.goalInput = document.getElementById("goalInput");
+    this.addGoalBtn = document.getElementById("addGoalBtn");
+    this.goalList = document.getElementById("goalList");
+    this.goalEmptyState = document.querySelector("#goals-section .goal-empty-state");
+    this.goalCompleteCount = document.getElementById("goalCompleteCount");
+    this.goalCompleteProgress = document.getElementById("goalCompleteProgress");
 
 
         this.loadGoals();
@@ -70,6 +62,12 @@ const goalsModule = {
             dashboardSection.classList.add("active");
         });
     },
+    
+
+    
+
+
+
 //===================== handle  Add goal================//
     handleAddGoal() {
      const text = this.goalInput.value.trim();
@@ -98,8 +96,7 @@ const goalsModule = {
     this.render();
     },
 // ==================toggle goal======================//
-    toggleGoal() {
-
+    toggleGoal(id) {     
     const goal = this.goals.find(
         goal => goal.id === id
     );
@@ -108,8 +105,6 @@ const goalsModule = {
         this.saveGoals();
         this.render();
     }
-
-
     },
 // ======================render goal============================//
     render() {
@@ -126,7 +121,8 @@ const goalsModule = {
         li.dataset.id = goal.id;
         li.innerHTML= ` <div class="task-left">
                                 <div class="custom-checkbox-wrapper">
-                                    <input type="checkbox" class="custom-checkbox"
+                                    <input type="checkbox" 
+                                    class="custom-checkbox  goals-checkbox"
                                     ${goal.completed ? "checked" : ""}>
                                     <span class="checkbox-visual">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -134,7 +130,7 @@ const goalsModule = {
                                         </svg>
                                     </span>
                                 </div>
-                                <span class="task-text ${goal.completed ? "completed-text" : ""}"
+                                <span class="task-text ${goal.completed ? "goal-completed-text" : ""}"
                                 >${goal.text}</span>
                             </div>
                               <button class="btn-delete-task">
@@ -145,12 +141,10 @@ const goalsModule = {
     
     
      this.goalList.appendChild(li);
-
-    this.updateProgress();
-
     });
+    this.updateProgress();
     },
-// =======================update progress======================//
+// =======================update progress & goalCard Dashboard ======================//
     updateProgress() {
     const totalGoals = this.goals.length;
    const completedGoals = this.goals.filter((goal) => goal.completed).length;
@@ -158,9 +152,11 @@ const goalsModule = {
    if (totalGoals > 0) {
     percentage = Math.round((completedGoals / totalGoals) * 100);
  }
-
- this.goalProgress.textContent = `${completedGoals} of ${totalGoals} goals completed (${percentage}%)`;
+ this.goalProgress.textContent =`${completedGoals} of ${totalGoals} goals completed (${percentage}%)`;
  this.goalProgressBar.style.width = `${percentage}%`;
+//  goalCard dashboard ui
+ this.goalCompleteCount.textContent = `${completedGoals}/${this.goals.length} Completed`;
+ this.goalCompleteProgress.textContent = `${percentage}% Progress`;
     },
 // =========================save goal localstorage==========================//
     saveGoals() {

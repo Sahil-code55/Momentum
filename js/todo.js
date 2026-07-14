@@ -1,10 +1,3 @@
-/**
- * FocusHub - Todo Module
- * 
- * Manages adding, toggle completed status, deleting, and rendering todo tasks.
- * Hooks into input fields, lists, and task counters.
- */
-
 const openTodoBtn = document.querySelector("#openTodoBtn")
 const todoSection = document.getElementById("todo-section")
 const dashboardSection = document.getElementById("dashboard-section")
@@ -13,11 +6,7 @@ const numberTask = document.querySelector("#numberTask")
 
 
 const todoModule = {
-    // Selectors:
-    // Input: #todoInput
-    // Add Button: #addTodoBtn
-    // List: #todoList
-    // Counters: #todoCount, #todoCompletedCount on dashboard
+   
     tasks : [],
     
     init() {
@@ -42,14 +31,15 @@ const todoModule = {
      this.addTodoBtn.addEventListener("click", () => {
     this.handleAddTask();
 });
+    //  save on Enter key
    this.todoInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         this.handleAddTask();
     }
 });
 
-        //delete
-        this.todoList.addEventListener("click", (e) => {
+    //delete event
+    this.todoList.addEventListener("click", (e) => {
     const checkbox = e.target.closest(".custom-checkbox");
     if (checkbox) {
   const taskId = checkbox.closest(".task-item").dataset.id;
@@ -84,15 +74,14 @@ const completedTasks = this.tasks.filter(task => task.completed).length;
 this.todoCompletedCount.textContent = `${completedTasks} Completed`;
 }
 ,
-
+// =======handle Add task===========//
         handleAddTask() {
-        // Create task object and append to list
      const text = this.todoInput.value.trim();
      if(text === "") return;
     this.addTask(text);
     this.todoInput.value = "";   
     },
-    
+    // ==========addd task==========//
     addTask(text) {
         const newTask ={
         id :Date.now().toString(),
@@ -102,25 +91,21 @@ this.todoCompletedCount.textContent = `${completedTasks} Completed`;
 
         this.tasks.push(newTask);
         this.saveTasks();
-       
         this.render()
         
     },
-    
+    // =============delete task=============//
     deleteTask(id) {
-        // Remove task and re-render
          this.tasks = this.tasks.filter((task) => task.id !== id);
          this.saveTasks();
         this.render();
     },
-    
+    // =============toggle task==============//
     toggleTask(id) {
-        // Toggle complete and update styles
       const task = this.tasks.find(task => task.id === id);
          if (task) {
         task.completed = !task.completed;
         this.saveTasks();
-
         this.render();
     }
     },
@@ -129,7 +114,7 @@ this.todoCompletedCount.textContent = `${completedTasks} Completed`;
  saveTasks() {
     storageModule.save("todos", this.tasks);
 },
-
+// ===================render hamdling function================//
     render(){
     this.todoList.innerHTML = "";
     if (this.tasks.length === 0) {

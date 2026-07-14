@@ -12,6 +12,7 @@ const themeModule = {
     init() {
         console.log('Theme switcher module placeholder loaded.');
         // Read stored theme preference (default to light or system preferences)
+        
         // Bind change events to theme toggler element
     },
     

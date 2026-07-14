@@ -625,8 +625,13 @@
 
 .progress-fill {
     height: 100%;
-    width: 40%; /* Demo starting percent matching dashboard stat */
+    width: 0%;
     background-color: var(--color-goals);
     border-radius: var(--radius-full);
     transition: width var(--transition-normal);
+}
+
+.goal-completed-text{
+    text-decoration: line-through;
+    opacity: 0.6;
 }
