@@ -383,7 +383,7 @@
 }
 
 /* Dial Frame */
- .timer-dial-outer {
+.timer-dial-outer {
     width: 280px;
     height: 280px;
     border-radius: var(--radius-full);
@@ -396,9 +396,8 @@
     box-shadow: var(--shadow-lg);
     position: relative;
     margin-bottom: var(--space-xl);
-    border-top-color: var(--color-pomodoro); 
-}  
-
+    border-color: var(--color-pomodoro); 
+}
 
 .timer-display {
     font-family: var(--font-heading);
@@ -408,7 +407,6 @@
     letter-spacing: -1px;
     line-height: 1;
 }
-
 
 .session-label {
     font-size: 13px;
