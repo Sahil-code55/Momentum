@@ -1,7 +1,7 @@
 
 .feature-section {
-    background-color: var(--bg-card);
-    border: var(--border-width) solid var(--border-color);
+    background-color: var(--bg-card); 
+     border: var(--border-width) solid var(--border-color); 
     border-radius: var(--radius-xl);
     padding: var(--space-xl) var(--space-xxl);
     box-shadow: var(--shadow-md);
@@ -219,7 +219,7 @@
 }
 
 .btn-delete-task:hover {
-    color: var(--color-pomodoro); /* Tomato/Red tint for delete */
+    color: var(--color-pomodoro); 
     background-color: rgba(249, 115, 22, 0.1);
 }
 .btn-delete-task:active {

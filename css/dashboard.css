@@ -484,7 +484,7 @@ input:checked + .slider::before {
 /* Weather Card specifics */
 .widget-weather {
     background-color: var(--bg-widget-weather);
-    border-color: rgba(59, 130, 246, 0.15); /* warm tint border */
+    border-color: rgba(59, 130, 246, 0.15); 
 }
 
 .widget-header {

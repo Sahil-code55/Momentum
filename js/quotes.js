@@ -1,9 +1,3 @@
-/**
- * FocusHub - Motivation Quotes Module
- * 
- * Fetches and stores daily motivation quotes.
- * Displays quotes in the dashboard header block and the quote detail section.
- */
 const openQuotesBtn = document.getElementById("openQuotesBtn");
 const quotesSection = document.getElementById("quotes-section");
 const quotesBackBtn = document.getElementById("quotesBackBtn");
@@ -12,10 +6,7 @@ const quoteAuthorDisplay = document.querySelector('#quoteAuthor');
 const newQuoteBtnDisplay = document.querySelector("#newQuoteBtn");
 
 const quoteModule = {
-    // Selectors:
-    // Header Quote Box: #headerQuoteContainer
-    // Main Section: #quoteContainer, #quoteDisplay, #quoteAuthor
-    // Action Button: #newQuoteBtn
+   
     
     init() {
 
@@ -40,15 +31,6 @@ newQuoteBtnDisplay.addEventListener("click", getQuote)
 
 
 
-
-
-
-
-
-
-
-
-
         console.log('Quotes module placeholder loaded.');
         // Bind new quote buttons and render a starting quote
           openQuotesBtn.addEventListener("click",function(){
@@ -62,9 +44,4 @@ newQuoteBtnDisplay.addEventListener("click", getQuote)
         });
     }
 }
-// ,
-    // async fetchNewQuote() {
-    //     // Fetch quote from quotes API
-    //     // Update display text and author
-    // }
 
