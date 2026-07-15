@@ -9,7 +9,7 @@ const plannerModule = {
      saveTimer: null,
 
     init() {
-        console.log('Planner module placeholder loaded.');
+        
     //    select all textarea
        this.textareas = document.querySelectorAll(".planner-textarea");
      

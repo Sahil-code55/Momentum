@@ -30,8 +30,6 @@ newQuoteBtnDisplay.addEventListener("click", getQuote)
  getQuote()
 
 
-
-        console.log('Quotes module placeholder loaded.');
         // Bind new quote buttons and render a starting quote
           openQuotesBtn.addEventListener("click",function(){
             quotesSection.classList.add("active");

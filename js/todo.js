@@ -55,7 +55,6 @@ const todoModule = {
     });
 
         //  navigation
-        console.log('Todo module placeholder loaded.');
         openTodoBtn.addEventListener("click",function(){
             todoSection.classList.add("active");
             dashboardSection.classList.remove("active");   

@@ -1,7 +1,6 @@
 
-
+// INITIALIZE ALL THE MODULE
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('FocusHub Dashboard UI Loaded successfully.');
     todoModule.init();
     plannerModule.init();
     timerModule.init();

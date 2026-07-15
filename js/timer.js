@@ -25,7 +25,6 @@ const timerModule = {
 },
     
     init() {
-        console.log('Pomodoro timer module placeholder loaded.');
 
      
         this.modeBtns = document.querySelectorAll(".mode-btn");

@@ -8,7 +8,7 @@ const goalsModule = {
         goals: [],
     
     init() {
-    console.log('Goals module placeholder loaded.');
+    
     this.goalProgress = document.getElementById("goalProgress");
     this.goalProgressBar = document.getElementById("goalProgressBar");
     this.goalInput = document.getElementById("goalInput");

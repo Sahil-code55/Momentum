@@ -3,8 +3,7 @@ const themeModule = {
 
     
     init() {
-    console.log('Theme switcher module placeholder loaded.');
-  
+         
       this.themeToggle = document.getElementById("themeToggle");
         this.loadTheme();
       this.themeToggle.addEventListener("change", () => {
